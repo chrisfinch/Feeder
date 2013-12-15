@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NODE=/home/pi/node-v0.10.2-linux-arm-pi/bin/node
-SERVER_JS_FILE=/home/pi/feeder/server.js
+SERVER_JS_FILE=/home/pi/Feeder/app.js
 USER=pi
 OUT=/home/pi/nodejs.log
 
