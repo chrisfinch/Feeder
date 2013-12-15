@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Cat Feeder</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="/js/jquery-2.0.3.min.js"></script>
+    <script>
+
+    $(function () {
+
+    	$("#on").on("click", function (event) {
+    		event.preventDefault();
+    		$.get("/led/on", function () {
+    			$("#on").text("Turned on");
+    		});
+    	});
+
+    	$("#off").on("click", function (event) {
+    		event.preventDefault();
+    		$.get("/led/off", function () {
+    			$("#off").text("Turned off");
+    		});
+    	});
+
+    });
+
+    </script>
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Cat Feeder</h1>
+    <p>Message: <%= message %></p>
+    <button id="on">On</button>
+    <button id="off">Off</button>
   </body>
 </html>
