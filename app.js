@@ -47,6 +47,8 @@ app.get('/tweet', function (req, res) {
 	T.post('statuses/update', { status: 'Hello world!' }, function(err, reply) {
 		if (!err) {
 			res.send(200);
+		} else {
+			res.send(500, err);
 		}
 	});
 });
