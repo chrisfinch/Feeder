@@ -9,15 +9,17 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+var CONFIG = require('./config.json');
+
 var gpio = require("pi-gpio");
 
 var Twit = require('twit');
 
 var T = new Twit({
-    consumer_key:         process.env['TWIT_CONSUMER_KEY'],
-    consumer_secret:      process.env['TWIT_CONSUMER_SECRET'],
-    access_token:         process.env['TWIT_ACCESS_TOKEN'],
-	access_token_secret:  process.env['TWIT_ACCESS_TOKEN_SECRET']
+	consumer_key: CONFIG['TWIT_CONSUMER_KEY'],
+	consumer_secret: CONFIG['TWIT_CONSUMER_SECRET'],
+	access_token: CONFIG['TWIT_ACCESS_TOKEN'],
+	access_token_secret: CONFIG['TWIT_ACCESS_TOKEN_SECRET']
 });
 
 var app = express();
