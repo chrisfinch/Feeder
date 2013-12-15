@@ -1,0 +1,21 @@
+{
+  "name": "Feeder",
+  "version": "0.0.1",
+  "description": "Raspberry Pi IOT Cat Feeder",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisfinch/Feeder"
+  },
+  "author": "Chris Finch <chrisfinchy@gmail.com>",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "76d3154cd298c0e5ff5c1b1ef1e39d813471a861",
+  "dependencies": {
+    "pi-gpio": "0.0.2"
+  }
+}
