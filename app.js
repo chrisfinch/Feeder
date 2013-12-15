@@ -33,14 +33,23 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.get('/led', function (req, res) {
+app.get('/led/:action', function (req, res) {
 
-	gpio.open(16, "output", function(err) {        // Open pin 16 for output
-		gpio.write(16, 1, function() {            // Set pin 16 high (1)
-			res.render('index', { title: 'Done!' });
-			gpio.close(16);                        // Close pin 16
+	if (req.params.action === "on") {
+		gpio.open(16, "output", function(err) {        // Open pin 16 for output
+			gpio.write(16, 1, function() {            // Set pin 16 high (1)
+				res.render('index', { title: 'Turned on!' });
+				gpio.close(16);                        // Close pin 16
+			});
 		});
-	});
+	} else if (req.params.action === "off") {
+		gpio.open(16, "output", function(err) {        // Open pin 16 for output
+			gpio.write(16, 0, function() {            // Set pin 16 high (1)
+				res.render('index', { title: 'Turned off!' });
+				gpio.close(16);                        // Close pin 16
+			});
+		});
+	}
 
 });
 
