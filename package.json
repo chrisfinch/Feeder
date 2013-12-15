@@ -9,6 +9,7 @@
     "express": "3.4.7",
     "ejs": "*",
     "pi-gpio": "0.0.2",
-    "twitter-bootstrap": "~2.1.1"
+    "twitter-bootstrap": "~2.1.1",
+    "twit": "~1.1.11"
   }
 }

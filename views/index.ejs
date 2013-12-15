@@ -27,6 +27,13 @@
     		});
     	});
 
+    	$("#tweet").on("click", function (event) {
+    		event.preventDefault();
+    		$.get("/tweet", function () {
+    			$("#tweet").text("Sent Tweet...");
+    		});
+    	});
+
     });
 
     </script>
@@ -42,6 +49,7 @@
 				<p>Message: <%= message %></p>
 				<button class="btn btn-primary" id="on">On</button>
 				<button class="btn btn-danger" id="off">Off</button>
+				<button class="btn btn-info" id="tweet">Send Tweet</button>
 		    </div>
 
 	    </div>

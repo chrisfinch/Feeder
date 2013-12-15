@@ -11,6 +11,15 @@ var path = require('path');
 
 var gpio = require("pi-gpio");
 
+var Twit = require('twit');
+
+var T = new Twit({
+    consumer_key:         process.env['TWIT_CONSUMER_KEY'],
+    consumer_secret:      process.env['TWIT_CONSUMER_SECRET'],
+    access_token:         process.env['TWIT_ACCESS_TOKEN'],
+	access_token_secret:  process.env['TWIT_ACCESS_TOKEN_SECRET']
+});
+
 var app = express();
 
 // all environments
@@ -31,7 +40,14 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+
+app.get('/tweet', function (req, res) {
+	T.post('statuses/update', { status: 'Hello world!' }, function(err, reply) {
+		if (!err) {
+			res.send(200);
+		}
+	});
+});
 
 app.get('/led/:action', function (req, res) {
 
@@ -45,7 +61,7 @@ app.get('/led/:action', function (req, res) {
 	} else if (req.params.action === "off") {
 		gpio.open(16, "output", function(err) {        // Open pin 16 for output
 			gpio.write(16, 0, function() {            // Set pin 16 high (1)
-				res.render(200);
+				res.send(200);
 				gpio.close(16);                        // Close pin 16
 			});
 		});
