@@ -9,6 +9,8 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+var gpio = require("pi-gpio");
+
 var app = express();
 
 // all environments
@@ -33,7 +35,12 @@ app.get('/users', user.list);
 
 app.get('/led', function (req, res) {
 
-	res.render('index', { title: 'Done!' });
+	gpio.open(16, "output", function(err) {        // Open pin 16 for output
+		gpio.write(16, 1, function() {            // Set pin 16 high (1)
+			res.render('index', { title: 'Done!' });
+			gpio.close(16);                        // Close pin 16
+		});
+	});
 
 });
 
