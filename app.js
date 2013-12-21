@@ -81,11 +81,11 @@ app.get('/led/:action', function (req, res) {
 
 		piblaster.setPwm(23, 0.13);
 
-		pinOn(16);
+		pinOn(7);
 
 		setTimeout(function () {
 			piblaster.setPwm(23, 0);
-			pinOff(16);
+			pinOff(7);
 			res.send(200);
 		}, 2000);
 		
