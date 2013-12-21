@@ -62,13 +62,14 @@ app.get('/led/:action', function (req, res) {
 	if (req.params.action === "on") {
 		
 		interval = setinterval(function () {
+			console.log("doing something");
 			gpio.open(16, "output", function(err) {        // Open pin 16 for output
 				gpio.write(16, 1, function() {            // Set pin 16 high (1)
 
 					gpio.close(16);                        // Close pin 16
 				});
 			});
-		}, 1);
+		}, 100);
 
 		res.send(200);		
 	} else if (req.params.action === "off") {
