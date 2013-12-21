@@ -55,31 +55,29 @@ app.get('/tweet', function (req, res) {
 	});
 });
 
-var interval;
-
 app.get('/led/:action', function (req, res) {
 
 
 
 	if (req.params.action === "on") {
 
-		piblaster.setPwm(16, 0.2);
+		piblaster.setPwm(23, 0.13);
+
+		setTimeout(function () {
+			piblaster.setPwm(23, 0);
+			res.send(200);
+		}, 2000);
 		
-		// interval = setInterval(function () {
-		// 	console.log("doing something");
-			// gpio.open(16, "output", function(err) {        // Open pin 16 for output
-			// 	gpio.write(16, 1, function() {            // Set pin 16 high (1)
-			// 		res.send(200);
-			// 		gpio.close(16);                        // Close pin 16
-			// 	});
-			// });
-		// }, 2);
+		// gpio.open(16, "output", function(err) {        // Open pin 16 for output
+		// 	gpio.write(16, 1, function() {            // Set pin 16 high (1)
+		// 		res.send(200);
+		// 		gpio.close(16);                        // Close pin 16
+		// 	});
+		// });
 
 		//res.send(200);		
 	} else if (req.params.action === "off") {
 		
-		clearInterval(interval);
-
 		// gpio.open(16, "output", function(err) {        // Open pin 16 for output
 		// 	gpio.write(16, 0, function() {            // Set pin 16 high (1)
 		// 		res.send(200);
