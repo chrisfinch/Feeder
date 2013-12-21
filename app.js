@@ -87,7 +87,7 @@ app.get('/led/:action', function (req, res) {
 			piblaster.setPwm(23, 0);
 			pinOff(7);
 			res.send(200);
-		}, 2000);
+		}, 1650);
 		
 	} else if (req.params.action === "off") {
 		
