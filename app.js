@@ -11,6 +11,8 @@ var path = require('path');
 
 var CONFIG = require('./config.json');
 
+var piblaster = require('pi-blaster.js');
+
 var gpio = require("pi-gpio");
 
 var Twit = require('twit');
@@ -60,15 +62,17 @@ app.get('/led/:action', function (req, res) {
 
 
 	if (req.params.action === "on") {
+
+		piblaster.setPwm(16, 0.2);
 		
 		// interval = setInterval(function () {
 		// 	console.log("doing something");
-			gpio.open(16, "output", function(err) {        // Open pin 16 for output
-				gpio.write(16, 1, function() {            // Set pin 16 high (1)
-					res.send(200);
-					//gpio.close(16);                        // Close pin 16
-				});
-			});
+			// gpio.open(16, "output", function(err) {        // Open pin 16 for output
+			// 	gpio.write(16, 1, function() {            // Set pin 16 high (1)
+			// 		res.send(200);
+			// 		gpio.close(16);                        // Close pin 16
+			// 	});
+			// });
 		// }, 2);
 
 		//res.send(200);		
