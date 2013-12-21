@@ -69,7 +69,7 @@ app.get('/led/:action', function (req, res) {
 					gpio.close(16);                        // Close pin 16
 				});
 			});
-		}, 1);
+		}, 2);
 
 		res.send(200);		
 	} else if (req.params.action === "off") {
