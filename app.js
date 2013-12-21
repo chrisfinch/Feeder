@@ -55,27 +55,40 @@ app.get('/tweet', function (req, res) {
 	});
 });
 
+var pinOn = function (pin) {
+	gpio.open(pin, "output", function(err) {
+		gpio.write(pin, 1, function() {
+			gpio.close(pin);
+		});
+	});
+};
+
+var pinOff = function (pin) {
+	gpio.open(pin, "output", function(err) {
+		gpio.write(pin, 0, function() {
+			gpio.close(pin);
+		});
+	});
+};
+
 app.get('/led/:action', function (req, res) {
 
-
+	// CLOCKWISE piblaster.setPwm(23, 0.13);
+	// PAUSE piblaster.setPwm(23, 0.15);
+	// ANTICLOCKWISE piblaster.setPwm(23, 0.17);
 
 	if (req.params.action === "on") {
 
 		piblaster.setPwm(23, 0.13);
 
+		pinOn(16);
+
 		setTimeout(function () {
 			piblaster.setPwm(23, 0);
+			pinOff(16);
 			res.send(200);
 		}, 2000);
 		
-		// gpio.open(16, "output", function(err) {        // Open pin 16 for output
-		// 	gpio.write(16, 1, function() {            // Set pin 16 high (1)
-		// 		res.send(200);
-		// 		gpio.close(16);                        // Close pin 16
-		// 	});
-		// });
-
-		//res.send(200);		
 	} else if (req.params.action === "off") {
 		
 		// gpio.open(16, "output", function(err) {        // Open pin 16 for output
