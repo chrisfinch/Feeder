@@ -73,7 +73,7 @@ var pinOff = function (pin) {
 
 var turnDuration = 500;
 
-app.get('/feed', function () {
+app.get('/feed', function (req, res) {
 
 	piblaster.setPwm(23, 0.17);
 
@@ -84,14 +84,16 @@ app.get('/feed', function () {
 		pinOff(7);
 		res.send(200);
 
-		// T.post('statuses/update', { status: 'I just fed the cats at ' + }, function(err, reply) {
-		// 	if (!err) {
-		// 		res.send(200);
-		// 	} else {
-		// 		res.send(500, err);
-		// 	}
-		// });
+		var now = new Date();
 
+
+		T.post('statuses/update', { status: 'I just fed the cats at ' + now.getHours()+1+':'+now.getMinutes()+1 }, function(err, reply) {
+			if (!err) {
+				res.send(200);
+			} else {
+				res.send(500, err);
+			}
+		});
 
 	}, turnDuration);
 
