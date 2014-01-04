@@ -115,7 +115,6 @@ app.get('/feed', function (req, res) {
 	setTimeout(function () {
 		piblaster.setPwm(23, 0);
 		pinOff(7);
-		res.send(200);
 
 		T.post('statuses/update', { status: 'I just fed the cats at ' + getDateTime() }, function(err, reply) {
 			if (!err) {
