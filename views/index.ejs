@@ -27,6 +27,10 @@
     		});
     	});
 
+        setInterval(function () {
+            $("#lastSnap").attr('src', 'lastsnap.jpg');
+        }, 5000);
+
     });
 
     </script>
@@ -43,6 +47,14 @@
 				<button class="btn btn-primary" id="feed">Feed!</button>
 				<button class="btn btn-info" id="tweet">Send Tweet</button>
 		    </div>
+
+            <div class="col-md-12">
+                
+                <h2>Latest Image</h2>
+
+                <img src="lastsnap.jpg" alt="" id="lastSnap">
+
+            </div>
 
 	    </div>
 	</div>
