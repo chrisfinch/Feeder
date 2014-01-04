@@ -56,6 +56,19 @@ app.get('/tweet', function (req, res) {
 	});
 });
 
+
+// Twitter motion tweets
+
+fs.watch('/tmp/motion', function (event, filename) {
+  console.log('event is: ' + event);
+  if (filename) {
+	console.log("detected some motion" + filename);
+	//T.post('statuses/update', { status: 'Motion was detected!' });
+  } else {
+    console.log('filename not provided');
+  }
+});
+
 function copyFile(source, target, cb) {
   var cbCalled = false;
 
