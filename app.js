@@ -8,6 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
 
 var CONFIG = require('./config.json');
 
@@ -54,6 +55,12 @@ app.get('/tweet', function (req, res) {
 		}
 	});
 });
+
+var updateImage = setInterval(function () {
+
+	fs.createReadStream('/tmp/motion/lastsnap.jpg').pipe(fs.createWriteStream(path.join(__dirname, 'public', 'lastsnap.jpg')));
+
+}, 10000);
 
 var pinOn = function (pin) {
 	gpio.open(pin, "output", function(err) {
