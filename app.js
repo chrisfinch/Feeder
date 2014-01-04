@@ -71,14 +71,28 @@ var pinOff = function (pin) {
 	});
 };
 
-app.get('/led/:action', function (req, res) {
+var turnDuration = 500;
+
+app.get('/turn/:action', function (req, res) {
 
 	// CLOCKWISE piblaster.setPwm(23, 0.13);
 	// PAUSE piblaster.setPwm(23, 0.15);
 	// ANTICLOCKWISE piblaster.setPwm(23, 0.17);
 
-	if (req.params.action === "on") {
+	if (req.params.action === "left") {
 
+		piblaster.setPwm(23, 0.17);
+
+		pinOn(7);
+
+		setTimeout(function () {
+			piblaster.setPwm(23, 0);
+			pinOff(7);
+			res.send(200);
+		}, turnDuration);
+		
+	} else if (req.params.action === "right") {
+		
 		piblaster.setPwm(23, 0.13);
 
 		pinOn(7);
@@ -87,16 +101,7 @@ app.get('/led/:action', function (req, res) {
 			piblaster.setPwm(23, 0);
 			pinOff(7);
 			res.send(200);
-		}, 1650);
-		
-	} else if (req.params.action === "off") {
-		
-		// gpio.open(16, "output", function(err) {        // Open pin 16 for output
-		// 	gpio.write(16, 0, function() {            // Set pin 16 high (1)
-		// 		res.send(200);
-		// 		gpio.close(16);                        // Close pin 16
-		// 	});
-		// });
+		}, turnDuration);
 	}
 
 });

@@ -13,17 +13,17 @@
 
     $(function () {
 
-    	$("#on").on("click", function (event) {
+    	$("#left").on("click", function (event) {
     		event.preventDefault();
-    		$.get("/led/on", function () {
-    			$("#on").text("Turned on");
+    		$.get("/turn/left", function () {
+    			$("#left").text("Turned left");
     		});
     	});
 
-    	$("#off").on("click", function (event) {
+    	$("#right").on("click", function (event) {
     		event.preventDefault();
-    		$.get("/led/off", function () {
-    			$("#off").text("Turned off");
+    		$.get("/turn/right", function () {
+    			$("#right").text("Turned right");
     		});
     	});
 
@@ -47,8 +47,8 @@
 		    <div class="col-md-12">
 				<h1>Cat Feeder</h1>
 				<p>Message: <%= message %></p>
-				<button class="btn btn-primary" id="on">2 sec rotation</button>
-				<button class="btn btn-danger" id="off">Off</button>
+				<button class="btn btn-primary" id="left">Left</button>
+				<button class="btn btn-danger" id="right">Right</button>
 				<button class="btn btn-info" id="tweet">Send Tweet</button>
 		    </div>
 
