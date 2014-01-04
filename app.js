@@ -98,10 +98,17 @@ var getDateTime = function () {
 };
 
 var turnDuration = 500;
+var direction = true;
 
 app.get('/feed', function (req, res) {
 
-	piblaster.setPwm(23, 0.17);
+	if (direction) {
+		piblaster.setPwm(23, 0.17);
+		direction = false;
+	} else {
+		piblaster.setPwm(23, 0.13);
+		direction = true;
+	}
 
 	pinOn(7);
 
@@ -119,8 +126,6 @@ app.get('/feed', function (req, res) {
 		});
 
 	}, turnDuration);
-
-
 
 });
 
