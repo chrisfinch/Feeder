@@ -73,6 +73,32 @@ var pinOff = function (pin) {
 
 var turnDuration = 500;
 
+app.get('/feed', function () {
+
+	piblaster.setPwm(23, 0.17);
+
+	pinOn(7);
+
+	setTimeout(function () {
+		piblaster.setPwm(23, 0);
+		pinOff(7);
+		res.send(200);
+
+		// T.post('statuses/update', { status: 'I just fed the cats at ' + }, function(err, reply) {
+		// 	if (!err) {
+		// 		res.send(200);
+		// 	} else {
+		// 		res.send(500, err);
+		// 	}
+		// });
+
+
+	}, turnDuration);
+
+
+
+});
+
 app.get('/turn/:action', function (req, res) {
 
 	// CLOCKWISE piblaster.setPwm(23, 0.13);

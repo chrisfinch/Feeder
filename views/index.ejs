@@ -13,17 +13,10 @@
 
     $(function () {
 
-    	$("#left").on("click", function (event) {
+    	$("#feed").on("click", function (event) {
     		event.preventDefault();
-    		$.get("/turn/left", function () {
-    			$("#left").text("Turned left");
-    		});
-    	});
-
-    	$("#right").on("click", function (event) {
-    		event.preventDefault();
-    		$.get("/turn/right", function () {
-    			$("#right").text("Turned right");
+    		$.get("/feed", function () {
+    			$("#feed").text("Fed :-)");
     		});
     	});
 
@@ -47,8 +40,7 @@
 		    <div class="col-md-12">
 				<h1>Cat Feeder</h1>
 				<p>Message: <%= message %></p>
-				<button class="btn btn-primary" id="left">Left</button>
-				<button class="btn btn-danger" id="right">Right</button>
+				<button class="btn btn-primary" id="feed">Feed!</button>
 				<button class="btn btn-info" id="tweet">Send Tweet</button>
 		    </div>
 
